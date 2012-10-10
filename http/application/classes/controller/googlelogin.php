@@ -59,6 +59,7 @@ class Controller_GoogleLogin extends Controller_AuthTemplate
 						$this->request->redirect(Route::url('main'));
 					}
 					else {
+						var_dump($response1);
 						die("Credentials were wrong");
 						# Something wrong with credentials
 					}

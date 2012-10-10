@@ -196,7 +196,8 @@ class Model_User extends Model_Entity
                 if (is_object(Doctrine::em()->getRepository('Model_User')->findOneByEmail($details['email'])))
                         return array(NULL, "There already exists a user tied to this email address");
 
-                $radcheck = Model_Radcheck::addNTPassword('GUEST', GuestNetUtils::generateRandomString());
+		$password = GuestNetUtils::generateRandomString();
+                $radcheck = Model_Radcheck::addNTPassword('GUEST', $password);
                 if (is_object($radcheck))
                 {
                         $guest = new Model_User();
@@ -210,7 +211,7 @@ class Model_User extends Model_Entity
                         $guest->username = $radcheck->username;
 			$guest->save();
                         if (is_object(Doctrine::em()->getRepository('Model_User')->findOneByUsername($guest->username)))
-                                return array($guest, "Guest account successfully added for " . $guest->name);
+                                return array($guest, "Guest account successfully added for " . $guest->name . " with password: ".$password);
 
                         $radcheck->delete();
                         return array(NULL, "Could not create account for " .  $guest->name);

@@ -132,7 +132,8 @@ Kohana::modules(array(
 	// 'userguide'  => MODPATH.'userguide',  // User guide and API documentation
 	
 	'doctrine2'  => MODPATH.'doctrine2',  // Doctrine2
-	'php-ipaddress' => MODPATH.'php-ipaddress',
+	//'php-ipaddress' => MODPATH.'php-ipaddress',
+
 	));
 
 

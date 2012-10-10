@@ -113,7 +113,7 @@ else
     <footer>
       <div style="float: right; margin-right: 3em; clear: both;">
         <br/>
-        &copy; David Tarrant &amp; David Newman, University of Southampton / The Open Data Institute<br/>
+	&copy; Southampton Open Wireless Network (<a href="http://www.sown.org.uk">sown.org.uk</a>)<br/>
       </div>
     </footer>
   </div>

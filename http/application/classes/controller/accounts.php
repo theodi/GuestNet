@@ -8,18 +8,30 @@ class Controller_Accounts extends Controller_AuthTemplate
 		if ($this->request->method() == 'POST')
                 {
                         $post = $this->request->post();	
-			if (empty($post["current"]) || empty($post["new1"]) || empty($post["new2"]))
-				$this->template->message = "Not all fields were filled in";
-			elseif ($post["new1"] != $post["new2"])
-				$this->template->message = "Passwords did not match";
-      			elseif (!$user->checkPassword($post["current"]))
-                  		$this->template->message = "Current Password Incorrect";
-     			elseif ($user->checkPassword($post["current"]) && ($post["new1"] == $post["new2"])) {
-            			if ($user->setPassword($post["new1"])) 
-                  			$this->template->message = "Password successfully changed";
-            			else 
-                  			$this->template->message = "Failed to change password";
-            		}
+			if ($user->isAdminUser())
+			{
+				if (empty($post["new1"]) || empty($post["new2"]))
+					$this->template->message = "Not all fields were filled in";
+				elseif ($post["new1"] != $post["new2"])
+                                	$this->template->message = "Passwords did not match";
+				
+			}
+			else 
+			{
+				if (empty($post["current"]) || empty($post["new1"]) || empty($post["new2"]))
+					$this->template->message = "Not all fields were filled in";
+				elseif ($post["new1"] != $post["new2"])
+					$this->template->message = "Passwords did not match";
+      				elseif (!$user->checkPassword($post["current"]))
+                  			$this->template->message = "Current password incorrect";
+			}
+			if (empty($this->template->message))
+			{
+				if ($user->setPassword($post["new1"]))
+                                        $this->template->message = "Password successfully changed";
+                                else
+                                        $this->template->message = "Failed to change password";
+			}
       		}
 
 		$this->template->title = "My Account";

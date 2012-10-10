@@ -75,16 +75,6 @@ class Auth_Google extends Auth {
                 return FALSE;
         }
 
-	 /**
-         * Is the Auth instance for a user who is currently logged in
-         *
-         * @return  boolean
-         */
-        public function logged_in($role = NULL)
-        {
-                return !is_null($this->get_user());
-        }
-
 	public function force_login($credentials, $mark_session_as_forced = FALSE)
 	{
 		$user = Doctrine::em()->getRepository('Model_User')->findOneByEmail($credentials['email']);
@@ -94,10 +84,14 @@ class Auth_Google extends Auth {
                         $newuser->email = $credentials['email'];
                         $newuser->name = $credentials['name'];
                         $newuser->picPath = (empty($credentials['picture']) ? NULL : $credentials['picture']);
+			$newuser->active = TRUE;
                         $newuser->save();
-			$newuser->username = $user_and_domain[0];
+			$newuser->username = $newuser_and_domain[0];
 			$newuser->save();
 			$user = Doctrine::em()->getRepository('Model_User')->findOneByEmail($credentials['email']);
+			$radcheck = Model_Radcheck::addNTPassword($user->username, GuestNetUtils::generateRandomString());
+			if (!is_object($radcheck))
+				return FALSE;
 
                 }
 		

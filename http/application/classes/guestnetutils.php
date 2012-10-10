@@ -21,7 +21,7 @@ class GuestNetUtils
 	{
 		$admin_users = Kohana::$config->load('system.default.admin_users');
                 foreach ($admin_users as $admin_user) {
-                        if (preg_match('/^'.$admin_user.'$/', $this->email))
+                        if (preg_match('/^'.$admin_user.'$/', $username))
                                 return TRUE;
                 }
                 return FALSE;
