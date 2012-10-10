@@ -139,12 +139,7 @@ class Model_User extends Model_Entity
 
 	public function isAdminUser()
 	{
-		$admin_users = Kohana::$config->load('system.default.admin_users');
-                foreach ($admin_users as $admin_user) {
-                        if (preg_match('/^'.$admin_user.'$/', $this->email))
-                                return TRUE;
-                }
-                return FALSE;
+		return GuestNetUtils::isAdminUser($this->email);
 	}
 
 	public function __toString()
