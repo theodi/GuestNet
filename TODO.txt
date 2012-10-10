@@ -1,0 +1,9 @@
+TODO List
+---------
+
+1. Sort out padding of zeroes in guest usernames.
+2. Finish code for redeeming registration codes.
+3. Listing for events so you can edit them.
+4. Should events be tied to a sponsor or similar?
+5. Investigate whether the auth code can be tidied up to isolate standard login from google login and other potential login such as LDAP, AD, etc.
+6. Write an installer.
