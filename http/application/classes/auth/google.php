@@ -84,6 +84,7 @@ class Auth_Google extends Auth {
                         $newuser->email = $credentials['email'];
                         $newuser->name = $credentials['name'];
                         $newuser->picPath = (empty($credentials['picture']) ? NULL : $credentials['picture']);
+			$newuser->validTo = new \DateTime('2030-12-31 23:59:00');
 			$newuser->active = TRUE;
                         $newuser->save();
 			$newuser->username = $newuser_and_domain[0];
