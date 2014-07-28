@@ -46,11 +46,11 @@ else
 </nav>
 <div align="center">
 <h2 class="main_title"><?= $heading ?></h2>
-<?php if (!Empty($message)) { ?>
-      <div class="message">
+<div class="message">
+  <?php if (!Empty($message)) { ?>
         <p style="text-align: center; font-size: 1.5em; font-weight: bold;"><?= $message ?></p>
-      </div>
-<?php  } ?>
+  <?php  } ?>
+</div>
 <?= $content ?>
 </div>
 <footer id='footer' style="bottom: 0; width: 100%; padding-top: 10px; padding-bottom: 10px; min-height: 120px;">

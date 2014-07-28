@@ -172,7 +172,7 @@ Route::set('glogin', 'glogin', array(
 Route::set('main', 'main', array(
         ))
         ->defaults(array(
-                'controller' => 'main',
+                'controller' => 'accounts',
                 'action'     => 'default',
         ));
 
