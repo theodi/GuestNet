@@ -14,109 +14,62 @@ else
 	$menu = "menu";
 ?>
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html prefix="dct: http://purl.org/dc/terms/
+              rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+              dcat: http://www.w3.org/ns/dcat#
+              odrs: http://schema.theodi.org/odrs#">
 <head>
-  <meta charset="utf-8" />
-  <link rel="shortcut icon" href="http://www.theodi.org/favicon.ico" type="image/vnd.microsoft.icon" />
-  <title><?= $title ?> | <?= $company['name'] ?></title>
-  <meta name="MobileOptimized" content="width">
-  <meta name="HandheldFriendly" content="true">
-  <meta name="viewport" content="width=device-width">
-  <style>
-    @import url("http://www.theodi.org/modules/system/system.base.css?majo3e");
-    @import url("http://www.theodi.org/modules/system/system.messages.css?majo3e");
-    @import url("http://www.theodi.org/modules/system/system.theme.css?majo3e");
-  </style>
-  <style>
-    @import url("http://www.theodi.org/modules/aggregator/aggregator.css?majo3e");
-    @import url("http://www.theodi.org/sites/all/modules/date/date_api/date.css?majo3e");
-    @import url("http://www.theodi.org/modules/field/theme/field.css?majo3e");
-    @import url("http://www.theodi.org/modules/node/node.css?majo3e");
-    @import url("http://www.theodi.org/modules/user/user.css?majo3e");
-    @import url("http://www.theodi.org/sites/all/modules/views/css/views.css?majo3e");
-  </style>
-  <style>
-    @import url("http://www.theodi.org/sites/all/themes/odi/css/print.css?majo3e");
-    @import url("http://www.theodi.org/sites/all/themes/odi/css/odi.css?majo3e");
-  </style>
-  <link rel="stylesheet" href="/media/css/style.css" type="text/css">
-  <!--[if IE 6]>
-    <style>
-      @import url("http://www.theodi.org/sites/all/themes/odi/css/bootstrap.ie6.min.css?majo3e");
-    @import url("http://www.theodi.org/sites/all/themes/odi/css/ie6.css?majo3e");
-   </style>
-  <![endif]-->
-  <script src="http://www.theodi.org/misc/jquery.js?v=1.4.4"></script>
-  <script src="http://www.theodi.org/misc/jquery.once.js?v=1.2"></script>
-  <script src="http://www.theodi.org/misc/drupal.js?majo3e"></script>
-  <script src="https://www.google.com/jsapi?majo3e"></script>
-  <script src="http://www.theodi.org/sites/all/themes/odi/js/script.js?majo3e"></script>
-  <script src="http://www.theodi.org/sites/all/themes/odi/js/jquery.nicescroll.min.js?majo3e"></script>
-  <script src="http://www.theodi.org/sites/all/themes/odi/js/browser.js?majo3e"></script>
-  <!--[if lt IE 9]>
-    <script src="/sites/all/themes/zen/js/html5-respond.js"></script>
-  <![endif]-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Data Barometer Data | {{ page.title }}</title>
+<link href="http://assets.theodi.org/css/odi-bootstrap-pomegranate.css" rel="stylesheet">
+<link href="/css/style.css" rel="stylesheet">
+<link rel="shortcut icon" href="{{ site.url_root }}/img/odifavicon32.ico">
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+<script src="http://assets.theodi.org/js/bootstrap-tab.js"> </script>
 </head>
-<body class="html front <?= $loggedin ?> one-sidebar sidebar-second page-node" >
-  <p id="skip-link">
-    <a href="#main-menu" class="element-invisible element-focusable">Jump to navigation</a>
-  </p>
-  <script type="template/html" id="cookie-notification-template">
-    <div id="cookie-notification">
-      <div class="container">
-        <div class="row-fluid">
-          <div class="span3 title">Cookies on <?= $company['name'] ?> Website</div>
-          <div class="span6 description">This website uses cookies to provide you with the best experience.</div>
-          <div class="span3 links">
-            <a class="btn btn-info continue" href="javascript:;">Continue</a><br>
-            <a class="more" href="<?= $company['cookie_policy_url'] ?>">Find out more</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </script>
-
-  <div class="header-bg"></div>
-
-  <div id="page" class="container">
-    <header id="header" role="banner">
-      <div class="branding">
-        <a href="/" title="Home" rel="home" id="logo">
-          <img src="/media/images/logo.svg" alt="Home" class="b_svg" width="131" height ="54">
-          <img src="/media/images/logo.png" alt="Home" class="b_png" width="131" height ="54">        
-        </a>
-        <hgroup id="name-and-slogan">
-          <h1 id="site-name">
-            <a href="/" title="<?= $company['name'] ?>" rel="home">
-              <img src="/media/images/logo_a.svg" alt="<?= $company['name'] ?>" class="b_svg" width="326" height ="30">
-              <img src="/media/images/logo_a.png" alt="<?= $company['name'] ?>" class="b_png" width="326" height ="30">                                 </a>
-          </h1>
-          <h2 id="site-slogan">
-            <img src="/media/images/logo_b.svg" alt="<?= $company['subname'] ?>" class="b_svg" width="246" height ="14">
-            <img src="/media/images/logo_b.png" alt="<?= $company['subname'] ?>" class="b_png" width="246" height ="14">
-          </h2>
-        </hgroup>
-      </div>
-<?= View::factory('partial/loggedin') ?>
-      <div style="clear: both;"></div>
-<?= View::factory("partial/$menu"); ?>
-       <h2 class="main_title"><?= $heading ?></h2>
-    </header>
+<body>
+<nav>
+	<div class='navbar navbar-inverse navbar-static-top' id='topbar'>
+		<div class='container'>
+			<div class='navbar-inner'>
+				<h1><a href="/">Eduroam control portal</a></h1>
+				<span class="label" style="top: -10px; position: absolute; left: 310px;">
+					BETA
+				</span>
+				<a class='brand' href='/'>
+					<img alt="Logo" src="http://assets.theodi.org/img/logo-footer.png" />
+				</a>
+			</div>
+		</div>
+	</div>
+</nav>
+<div align="center">
+<h2 class="main_title"><?= $heading ?></h2>
 <?php if (!Empty($message)) { ?>
       <div class="message">
         <p style="text-align: center; font-size: 1.5em; font-weight: bold;"><?= $message ?></p>
       </div>
 <?php  } ?>
 <?= $content ?>
-    <nav class="bottomnav"></nav>
-    <footer>
-      <div style="float: right; margin-right: 3em; clear: both;">
-        <br/>
-	&copy; Southampton Open Wireless Network (<a href="http://www.sown.org.uk">sown.org.uk</a>)<br/>
-      </div>
-    </footer>
-  </div>
+</div>
+<footer id='footer' style="bottom: 0; width: 100%; padding-top: 10px; padding-bottom: 10px; min-height: 120px;">
+	<div style="margin-left: auto; margin-right: auto; width: 80%;">
+		<div class='span6 footer-content'>
+			<p> <a href='http://www.openstreetmap.org/?lat=51.522205&amp;lon=-0.08176500000001852&amp;zoom=16&amp;layers=T&amp;mlat=51.52210&amp;mlon=-0.08343'>Open Data Institute</a><span>, 65 Clifton Street, London EC2A 4JE</span></p>
+			<p><a href='mailto:info@theodi.org'>info@theodi.org</a> · Company <a href='http://opencorporates.com/companies/gb/08030289'>08030289</a>	· <span>VAT</span> <span>143 7796 80</span></p>
+		</div>
+		<div style="display: inline-block; float: right;">
+			
+      			<?php if (!empty($user)) { ?>
+      			  <span class="userheader"><?= $user->username ?>&nbsp;(<a href="glogin?logout">Logout</a>)&nbsp;&nbsp;</span>
+			<?php } ?>
+			<p class='license'><a href='http://creativecommons.org/licenses/by-sa/2.0/uk/deed.en_GB' rel='license'><img alt="Creative Commons Licence" height="15" src="http://static.theodi.org/assets/cc-853c95321fbeb898ecb83c38fb156a71.png" width="80" /></a></p>
+		</div>
+	</div>
+</footer>
+
+
 </body>
 </html>
 

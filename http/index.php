@@ -69,7 +69,7 @@ if ( ! is_dir($system) AND is_dir(DOCROOT.$system))
 	$system = DOCROOT.$system;
 
 // Define the absolute paths for configured directories
-define('APPPATH', '/var/www/odinet/application'.DIRECTORY_SEPARATOR);
+define('APPPATH', '/var/www/eduroam/application'.DIRECTORY_SEPARATOR);
 define('MODPATH', '/usr/share/php/kohana3.2/modules'.DIRECTORY_SEPARATOR);
 define('SYSPATH', '/usr/share/php/kohana3.2/system'.DIRECTORY_SEPARATOR);
 

@@ -1,5 +1,8 @@
       <div style="text-align: center; margin-left: auto; margin-right: auto; border: 0;">
-        <form name="change_password" method="POST" action="" style="border: none;">
+        <br/><br/>
+	<p>Set your password below and then connect to eduroam using the username <b><?= $user->username ?>@<?=  Kohana::$config->load('system.default.company.wifi_net_domain') ?></b> and the password you specify!</p>
+	<br/><br/>
+	<form name="change_password" method="POST" action="" style="border: none;">
           <table width="80%" style="font-size: 1.6em; border: none;">
             <tr><td width="40%">Username</td><td width="60%"><?= $user->username ?>@<?=  Kohana::$config->load('system.default.company.wifi_net_domain') ?></td></tr>
             <tr><td width="40%">&nbsp;</td><td width="60%">&nbsp;</td></tr>

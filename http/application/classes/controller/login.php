@@ -32,7 +32,7 @@ class Controller_Login extends Controller_AuthTemplate
 		}
 		$this->template->title = "Wireless Control Panel";
 		$this->template->content = View::Factory("pages/login");
-		
+//		$this->template->content = "";	
 	}			
 	
 	public function action_logout()
