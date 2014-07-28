@@ -21,7 +21,7 @@ else
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Open Data Barometer Data | {{ page.title }}</title>
+<title>Eduroam control panel</title>
 <link href="http://assets.theodi.org/css/odi-bootstrap-pomegranate.css" rel="stylesheet">
 <link href="/css/style.css" rel="stylesheet">
 <link rel="shortcut icon" href="{{ site.url_root }}/img/odifavicon32.ico">
@@ -35,7 +35,7 @@ else
 			<div class='navbar-inner'>
 				<h1><a href="/">Eduroam control portal</a></h1>
 				<span class="label" style="top: -10px; position: absolute; left: 310px;">
-					BETA
+					ODI Labs
 				</span>
 				<a class='brand' href='/'>
 					<img alt="Logo" src="http://assets.theodi.org/img/logo-footer.png" />
