@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const google = require('googleapis').google;
 const jwt = require('jsonwebtoken');
-const md5 = require('md5');
+const nthash = require('smbhash').nthash;
+const mysql = require('mysql');
 
 // Google's OAuth2 client
 const OAuth2 = google.auth.OAuth2;
@@ -76,15 +77,16 @@ app.get('/main', function (req, res) {
   service.userinfo.v2.me.get(
     function(err,response) {
       if (err) {
-        console.log(err);
+        //console.log(err);
         res.status(500).send('Internal server error!');
       } else {
         userData = response.data;
-        if (response.data.hd != "theodi.org") {
-          res.status(403).send('Access Forbidden! An @theodi.org account is required to access this service.');
+        if (response.data.hd != CONFIG.permittedDomain) {
+          res.status(403).send('Access Forbidden! An @'+CONFIG.permittedDomain+' account is required to access this service.');
         } else {
           userData.emailSuffix = emailUsername(userData.email);
-          console.log(userData);
+          userData.eduroamUsername = userData.emailSuffix + '@eduroam.' + userData.hd;
+          //console.log(userData);
           return res.render('pages/main', { data: userData });
         }
       }
@@ -92,11 +94,53 @@ app.get('/main', function (req, res) {
   );
 });
 
-app.post('/set-password', function (req, res, next) {
-   console.log(userData.email);
-   console.log(req.body.password);
-   console.log(md5(req.body.password));
-   res.status(200).send('Got here');
+app.post('/main', function (req, res, next) {
+   //console.log(userData.email);
+   if (!userData.email) {
+    res.redirect('/');
+    return;
+   }
+   
+   var ntpassword = nthash(req.body.password);
+
+   var connection = mysql.createConnection({ 
+    host: CONFIG.freeRadiusMysql.host, 
+    user: CONFIG.freeRadiusMysql.user, 
+    password: CONFIG.freeRadiusMysql.password, 
+    database: CONFIG.freeRadiusMysql.database 
+   });
+
+   var user_query = 'SELECT id from ' + CONFIG.freeRadiusMysql.users_table + ' where username="'+userData.eduroamUsername+'";';
+   var update_query = 'UPDATE ' + CONFIG.freeRadiusMysql.users_table + ' set value="'+ntpassword+'" where username="'+userData.eduroamUsername+'" and attribute="NT-Password"';
+   var query = 'INSERT INTO ' + CONFIG.freeRadiusMysql.users_table + " (username,attribute,op,value) values('"+userData.eduroamUsername+"','NT-Password',':=','"+ntpassword+"') ON DUPLICATE KEY UPDATE value='"+ntpassword+"'";
+   var feedback = 'New record created';
+
+   //console.log(user_query);
+   
+   connection.connect();
+
+   connection.query(user_query,function(error,results,fields) {
+    if (error) {
+      //console.log(error);    
+      res.status(500).send('Internal server error - Database error (query 1)');
+    } else {
+      //console.log(results);
+      if (results[0]) {
+        query = update_query;
+        feedback = 'Password updated';
+      }
+      connection.query(query,function(error,results,fields) {
+        if (error) {
+          //console.log(error);    
+          res.status(500).send('Internal server error - Database error (query 2)');
+        } else {
+          //console.log(results.insertId);
+          userData.feedback = feedback
+          return res.render('pages/main', { data: userData });
+        }
+      });
+    }
+  });
 });
 
 // Listen on the port defined in the config file

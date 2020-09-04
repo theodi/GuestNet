@@ -10,17 +10,18 @@
     "body-parser": "^1.19.0",
     "google-auth-library": "^4.2.2",
     "googleapis": "^40.0.0",
-    "md5": "^2.0.0",
+    "smbhash": "^0.0.1",
+    "mysql": "^2.18.1",
     "jsonwebtoken": "^8.5.1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AidanLovelace/Express-Google-OAuth2-Tutorial.git"
+    "url": "git+https://github.com/theodi/GuestNet.git"
   },
-  "author": "Aidan Lovelace",
+  "author": "The Open Data Institute",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/AidanLovelace/Express-Google-OAuth2-Tutorial/issues"
+    "url": "https://github.com/theodi/GuestNet/issues"
   },
-  "homepage": "https://github.com/AidanLovelace/Express-Google-OAuth2-Tutorial#readme"
+  "homepage": "https://github.com/theodi/GuestNet#readme"
 }

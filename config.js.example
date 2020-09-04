@@ -8,6 +8,18 @@ module.exports = {
   baseURL: baseURL,
   port: port,
 
+  //The google managed domain which people require user accounts with to use this service
+  permittedDomain: 'example.org',
+
+  freeRadiusMysql: {
+    host: '192.168.0.1',
+    user: 'databaseuser',
+    password: 'databasepass',
+    database: 'radiusdb',
+    users_table: 'radcheck'
+  },
+
+
   // The credentials and information for OAuth2
   oauth2Credentials: {
     client_id: "xxxxx.apps.googleusercontent.com",

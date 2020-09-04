@@ -16,12 +16,18 @@
       <h1 class="text-left">Welcome <%= data.name %></h1>
       <hr/>
       
+      <% if (data.feedback) { %>
+        <div class="banner" id="banner">
+          <h2><%= data.feedback %></h1>
+        </div>
+      <% } %>
+
       <h2>How to login</h2>
         <p class="text-left">You eduroam username is: <b><%= data.emailSuffix %>@eduroam.<%= data.hd %></b></p>
       <hr/>
       
       <h2>Reset password</h2>
-        <form action="/set-password" method="post">
+        <form action="/main" method="post">
           <p class="text-left">
             <label for="password" class="text-left">Enter new password: </label>
             <input id="password" type="password" name="password" value="">

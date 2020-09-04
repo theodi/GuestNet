@@ -14,3 +14,8 @@
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.49);
   -webkit-font-smoothing: antialiased;
 }
+.banner {
+    text-align: center;
+    background: #f777;
+    padding: 0.5rem;
+}
