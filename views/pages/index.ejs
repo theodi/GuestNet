@@ -1,0 +1,31 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+    	<h1 class="text-left">Login</h1>
+        <p class="text-left">Please login with your ODI Google Account</p>
+        <p>
+            <a class="btn btn-google-plus-style btn-lg btn-block" href="<%= loginLink %>">
+                <i class="fa fa-google-plus-square"></i>  <span>Login with <strong>Google</strong></span>
+            </a>
+        </p>
+    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

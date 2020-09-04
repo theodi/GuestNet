@@ -1,0 +1,36 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+      <h1 class="text-left">Welcome <%= data.name %></h1>
+      <hr/>
+      
+      <h2>How to login</h2>
+        <p class="text-left">You eduroam username is: <b><%= data.emailSuffix %>@eduroam.<%= data.hd %></b></p>
+      <hr/>
+      
+      <h2>Reset password</h2>
+        <form action="/set-password" method="post">
+          <p class="text-left">
+            <label for="password" class="text-left">Enter new password: </label>
+            <input id="password" type="password" name="password" value="">
+            <input type="submit" value="OK">
+          </p>
+        </form>
+    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
