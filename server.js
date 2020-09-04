@@ -16,7 +16,7 @@ const app = express();
 app.use( express.static( "views" ) );
 
 // Set up body parser
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //Create out data object 
 var userData = {};
