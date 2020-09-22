@@ -1,3 +1,5 @@
+const fs = require('fs');
+const https = require('https');
 const express = require('express');
 const bodyParser = require('body-parser')
 const google = require('googleapis').google;
@@ -10,6 +12,11 @@ const OAuth2 = google.auth.OAuth2;
 
 // Including our config file
 const CONFIG = require('./config');
+
+// Set up SSL
+const privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+const certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+const credentials = {key: privateKey, cert: certificate};
 
 // Creating our express application
 const app = express();
@@ -143,8 +150,9 @@ app.post('/main', function (req, res, next) {
   });
 });
 
-// Listen on the port defined in the config file
-app.listen(CONFIG.port, function () {
+var httpsServer = https.createServer(credentials, app);
+
+httpsServer.listen(CONFIG.port, function() {
   console.log(`Listening on port ${CONFIG.port}`);
 });
 
