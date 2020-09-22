@@ -1,4 +1,5 @@
 const fs = require('fs');
+const http = require('http');
 const https = require('https');
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -150,10 +151,16 @@ app.post('/main', function (req, res, next) {
   });
 });
 
+var httpServer = http.createServer(app);
+httpServer.listen(CONFIG.port, function() {
+  console.log(`Listening on port ${CONFIG.port}`);
+});
+
+
 var httpsServer = https.createServer(credentials, app);
 
-httpsServer.listen(CONFIG.port, function() {
-  console.log(`Listening on port ${CONFIG.port}`);
+httpsServer.listen(CONFIG.port_https, function() {
+  console.log(`Listening on port ${CONFIG.port_https}`);
 });
 
 function emailUsername(emailAddress)
